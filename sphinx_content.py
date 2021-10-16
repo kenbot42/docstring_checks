@@ -9,12 +9,15 @@ Exits non-zero on fail.
 """
 import argparse
 import ast
+import logging
 from pathlib import Path
 import re
 import sys
 from typing import List, Optional, Union
 
 FuncDef = Union[ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef]
+
+logger = logging.getLogger(__name__)
 
 
 def parse_args() -> argparse.Namespace:
@@ -23,17 +26,28 @@ def parse_args() -> argparse.Namespace:
         description="Parse python files in a path for docstring errors"
     )
     parser.add_argument("path", nargs="*", type=Path, help="Path(s) to search for python files.")
-    return parser.parse_args()
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_const",
+        dest="log_level",
+        const=logging.DEBUG,
+        default=logging.INFO,
+        help="Verbose printout.",
+    )
+    opts = parser.parse_args()
+    logging.basicConfig(format="%(message)s", level=opts.log_level)
+    return opts
 
 
 class ParseFunctionDef:
     """Parse the function/class definitions."""
 
     regexes = {
-        "param": r":param .*:",  # Support typing inside of this if it happens
-        "type": r":type \S+:",  # This should only ever be a variable name
-        "meta": r":meta \S+:",  # This is probably only ever private/publics
-        "raises": r":raises .*:",
+        "param": r":param .*?:",  # Support typing inside of this if it happens
+        "type": r":type \S+?:",  # This should only ever be a variable name
+        "meta": r":meta \S+?:",  # This is probably only ever private/publics
+        "raises": r":raises .*?:",
         "return": r":return:",
         "rtype": r":rtype:",
         "yield": r":yield:",
@@ -135,11 +149,23 @@ class ParseFunctionDef:
 
         Pylint will catch when they are missing but does not check for content.
         """
+        # This one can get confusing.  Even with the greedy operator this will find
+        # the end of the regex if there happens to be a : at the end of the descripton.
+
+        # First: Check for anything that is probably a problem
         line_regex = "|".join([fr"{x}\s*$" for x in self.regexes.values()])
         matches = re.findall(line_regex, self.docstring(), re.M)
+
         if not matches:
             return
-        for line in matches:
+
+        # Now that we know there's something worth looking at, build a list of parameter strings
+        # where greedy does something and actually make sure that it's really a problem.
+        # Is this better than clever splitting on ":"? Maybe not.
+        # This still does not fix the error where you can specify descriptions on the next line.
+        param_regex = "|".join(self.regexes.values())
+        confirmed_matches = [x.strip() for x in re.findall(param_regex, self.docstring(), re.M)]
+        for line in [x for x in matches if x.strip() in confirmed_matches]:
             if line.startswith(":meta"):
                 continue
             self.errors.append(f"missing-description-error: {line}")
@@ -164,7 +190,7 @@ def check_docstrings(fpath: Path) -> int:
     :param fpath: Path to file to check docstrings
     :return: unix-style return code, 1 if errors are found
     """
-    print("INFO: Checking file", fpath)
+    logger.debug("Checking file %s", fpath)
     returncodes = [x.run_checks() for x in function_definitions(fpath)]
     return bool(any(returncodes))
 

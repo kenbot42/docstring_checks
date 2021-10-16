@@ -1,4 +1,3 @@
-INFO: Checking file PROJ_ROOT/tests/fixtures/sample_file.py
 *** PROJ_ROOT/tests/fixtures/sample_file.py:DefaultDocstringErrors:45
 default-docstring-error: :param abc: [description]
 default-docstring-error: :type abc: [type]
@@ -33,7 +32,7 @@ missing-description-error: :param name:
 missing-description-error: :type name:
 
 *** PROJ_ROOT/tests/fixtures/sample_file.py:empty_return:101
-missing-description-error: :returns:
+missing-description-error: :return:
 missing-description-error: :rtype:
 
 *** PROJ_ROOT/tests/fixtures/sample_file.py:empty_yield:107
@@ -50,7 +49,7 @@ empty-docstring-error: no docstring content
 missing-newline-error: ':param name: name of class' needs newline before
 
 *** PROJ_ROOT/tests/fixtures/sample_file.py:newline_param:129
-missing-newline-error: ':param name: name' needs newline before
+missing-newline-error: ':param name: name here with colon at end to be confusing:' needs newline before
 
 *** PROJ_ROOT/tests/fixtures/sample_file.py:newline_type:135
 missing-newline-error: ':type name: name' needs newline before
@@ -65,12 +64,12 @@ missing-newline-error: ':yield: yields' needs newline before
 missing-newline-error: ':rtype: int' needs newline before
 
 *** PROJ_ROOT/tests/fixtures/sample_file.py:newline_return:158
-missing-newline-error: ':returns: int' needs newline before
+missing-newline-error: ':return: int' needs newline before
 
 *** PROJ_ROOT/tests/fixtures/sample_file.py:newline_meta:163
 missing-newline-error: ':meta private:' needs newline before
 
 *** PROJ_ROOT/tests/fixtures/sample_file.py:multi_fail:187
 default-docstring-error: [summary]
-missing-newline-error: ':returns: something' needs newline before
+missing-newline-error: ':return: something' needs newline before
 

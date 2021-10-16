@@ -129,7 +129,7 @@ class NoNewlineDocstringErrors:
     def newline_param(self):
         """
         Missing newline before
-        :param name: name
+        :param name: name here with colon at end to be confusing:
         """
 
     def newline_type(self):
