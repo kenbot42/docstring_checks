@@ -48,7 +48,9 @@ class ParseFunctionDef:
         "type": r":type \S+?:",  # This should only ever be a variable name
         "meta": r":meta \S+?:",  # This is probably only ever private/publics
         "raises": r":raises .*?:",
+        "raise": r":raise .*?:",  # raise and raises both seem render fine and pylint approves
         "return": r":return:",
+        "returns": r":returns:",  # return and returns both seem render fine and pylint approves
         "rtype": r":rtype:",
         "yield": r":yield:",
     }

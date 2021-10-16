@@ -101,7 +101,7 @@ class EmptyDescriptions:
     def empty_return(self):
         """Testing the return type defaults are caught.
 
-        :return:
+        :returns:
         :rtype:"""
 
     def empty_yield(self):
@@ -114,7 +114,7 @@ class EmptyDescriptions:
     def empty_raise(self):
         """Test that the default raise is caught.
 
-        :raises TypeError:
+        :raise TypeError:
         """
 
 class EmptyClassDocstring:
@@ -183,6 +183,17 @@ class ValidCases:
             with some line wrapping
         :type value: int
         """
+
+    def returns_with_colon(self):
+        """Summary
+
+        :returns: something: else
+        :rtype: int
+        """
+
+
+class MultiFail:
+    """Multiple fails in one."""
 
     def multi_fail(self):
         """[summary]
