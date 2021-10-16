@@ -22,9 +22,7 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description="Parse python files in a path for docstring errors"
     )
-    parser.add_argument(
-        "path", nargs="*", type=Path, help="Path(s) to search for python files."
-    )
+    parser.add_argument("path", nargs="*", type=Path, help="Path(s) to search for python files.")
     return parser.parse_args()
 
 
@@ -124,9 +122,7 @@ class ParseFunctionDef:
 
         prev_line, sphinx_line = matches[0].split("\n")
         if prev_line.strip():
-            self.errors.append(
-                f"missing-newline-error: '{sphinx_line}' needs newline before"
-            )
+            self.errors.append(f"missing-newline-error: '{sphinx_line}' needs newline before")
 
     def cehck_empty_docstring(self):
         """Error if docstring is empty."""

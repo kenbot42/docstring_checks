@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "..",
+		}
+	],
+	"settings": {
+		"python.linting.pylintEnabled": true,
+		"python.linting.enabled": true,
+		"editor.snippetSuggestions": "top",
+		"autoDocstring.docstringFormat": "sphinx",
+		"editor.rulers": [100],
+		"python.formatting.blackArgs": ["--line-length", "100", "-t", "py39"],
+		"python.formatting.provider": "black",
+	}
+}
