@@ -1,0 +1,76 @@
+INFO: Checking file PROJ_ROOT/tests/fixtures/sample_file.py
+*** PROJ_ROOT/tests/fixtures/sample_file.py:DefaultDocstringErrors:45
+default-docstring-error: :param abc: [description]
+default-docstring-error: :type abc: [type]
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:default_summary:52
+default-docstring-error: [summary]
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:default_param:55
+default-docstring-error: :param name: [description]
+default-docstring-error: :type name: [type]
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:default_return:62
+default-docstring-error: :returns: [description]
+default-docstring-error: :rtype: [type]
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:default_yield:69
+default-docstring-error: :yield: [description]
+default-docstring-error: :rtype: [type]
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:default_raise:75
+default-docstring-error: :raises TypeError: [description]
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:EmptyDescriptions:83
+missing-description-error: :param abc:
+missing-description-error: :type abc:    
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:empty_summary:91
+empty-docstring-error: no docstring content
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:empty_param:94
+missing-description-error: :param name:
+missing-description-error: :type name:
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:empty_return:101
+missing-description-error: :returns:
+missing-description-error: :rtype:
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:empty_yield:107
+missing-description-error: :yield:
+missing-description-error: :rtype:
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:empty_raise:114
+missing-description-error: :raises TypeError:
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:EmptyClassDocstring:120
+empty-docstring-error: no docstring content
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:NoNewlineDocstringErrors:124
+missing-newline-error: ':param name: name of class' needs newline before
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:newline_param:129
+missing-newline-error: ':param name: name' needs newline before
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:newline_type:135
+missing-newline-error: ':type name: name' needs newline before
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:newline_raises:141
+missing-newline-error: ':raises TypeError: type error' needs newline before
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:newline_yield:148
+missing-newline-error: ':yield: yields' needs newline before
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:newline_rtype:153
+missing-newline-error: ':rtype: int' needs newline before
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:newline_return:158
+missing-newline-error: ':returns: int' needs newline before
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:newline_meta:163
+missing-newline-error: ':meta private:' needs newline before
+
+*** PROJ_ROOT/tests/fixtures/sample_file.py:multi_fail:187
+default-docstring-error: [summary]
+missing-newline-error: ':returns: something' needs newline before
+
