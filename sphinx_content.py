@@ -34,7 +34,7 @@ class ParseFunctionDef:
         "type": r":type \S+:",  # This should only ever be a variable name
         "meta": r":meta \S+:",  # This is probably only ever private/publics
         "raises": r":raises .*:",
-        "returns": r":returns:",
+        "return": r":return:",
         "rtype": r":rtype:",
         "yield": r":yield:",
     }
@@ -90,7 +90,7 @@ class ParseFunctionDef:
         :return: number of errors
         """
         if self.docstring() is None:
-            return
+            return 0
         self.check_defaults()
         self.cehck_empty_docstring()
         self.check_empty_fields()

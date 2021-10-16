@@ -6,7 +6,7 @@
 def func():
     """Docstring Title.
 
-    :returns: return code
+    :return: return code
     :rtype: int
     """
 
@@ -36,7 +36,7 @@ class WithDocstrings:
 
         :param cmd: Details about cmd.
         :type cmd: str
-        :returns: return code
+        :return: return code
         :rtype: int
         :meta private:
         """
@@ -62,7 +62,7 @@ class DefaultDocstringErrors:
     def default_return(self):
         """Testing the return type defaults are caught.
 
-        :returns: [description]pyla
+        :return: [description]pyla
         :rtype: [type]
         """
 
@@ -101,7 +101,7 @@ class EmptyDescriptions:
     def empty_return(self):
         """Testing the return type defaults are caught.
 
-        :returns:
+        :return:
         :rtype:"""
 
     def empty_yield(self):
@@ -157,7 +157,7 @@ class NoNewlineDocstringErrors:
 
     def newline_return(self):
         """Missing newline before
-        :returns: int
+        :return: int
         """
 
     def newline_meta(self):
@@ -186,5 +186,5 @@ class ValidCases:
 
     def multi_fail(self):
         """[summary]
-        :returns: something
+        :return: something
         """

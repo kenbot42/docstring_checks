@@ -11,7 +11,7 @@ default-docstring-error: :param name: [description]
 default-docstring-error: :type name: [type]
 
 *** PROJ_ROOT/tests/fixtures/sample_file.py:default_return:62
-default-docstring-error: :returns: [description]
+default-docstring-error: :return: [description]
 default-docstring-error: :rtype: [type]
 
 *** PROJ_ROOT/tests/fixtures/sample_file.py:default_yield:69
