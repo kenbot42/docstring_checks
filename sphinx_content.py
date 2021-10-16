@@ -9,15 +9,15 @@ Exits non-zero on fail.
 """
 import argparse
 import ast
+from pathlib import Path
 import re
 import sys
-from pathlib import Path
 from typing import List, Optional, Union
 
 FuncDef = Union[ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef]
 
 
-def parse_args():
+def parse_args() -> argparse.Namespace:
     """Parse command line arguments"""
     parser = argparse.ArgumentParser(
         description="Parse python files in a path for docstring errors"
@@ -87,7 +87,7 @@ class ParseFunctionDef:
     def run_checks(self) -> int:
         """Run checks.
 
-        :return: unix-style return code, 0 is passing
+        :return: number of errors
         """
         if self.docstring() is None:
             return
@@ -96,6 +96,7 @@ class ParseFunctionDef:
         self.check_empty_fields()
         self.check_newlines()
         self.print_errors()
+        return len(self.errors)
 
     def check_defaults(self):
         """Check for default docstring generation.
@@ -175,16 +176,18 @@ def main() -> int:
     """
     opts = parse_args()
 
-    returncode = 0
+    errors = 0
     for path in opts.path:
         if path.is_dir():
             paths = path.glob("**/*.py")
         else:
             paths = [path]
         for fname in paths:
-            returncode = check_docstrings(fname) or returncode
+            errors += check_docstrings(fname)
 
-    return returncode
+    if errors:
+        return 1
+    return 0
 
 
 if __name__ == "__main__":

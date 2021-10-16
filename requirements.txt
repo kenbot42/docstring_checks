@@ -1,5 +1,6 @@
-pytest
-black
-isort
-coverage
-pylint
+black==21.9b0
+coverage==6.0.2
+isort==5.9.3
+pylint==2.11.1
+pytest==6.2.5
+pytest-pythonpath==0.7.3

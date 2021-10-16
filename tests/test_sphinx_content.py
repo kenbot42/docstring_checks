@@ -1,14 +1,13 @@
 """Test sphinx content checks."""
+from pathlib import Path
 import re
 import sys
-from pathlib import Path
 
 import pytest
 
-# Add root dir to path!
-PROJ_ROOT = Path(__file__, "..", "..").resolve()
-sys.path.append(str(PROJ_ROOT))
 from sphinx_content import ParseFunctionDef, main
+
+PROJ_ROOT = Path(__file__, "..", "..").resolve()
 
 
 @pytest.mark.parametrize(
@@ -64,7 +63,7 @@ def test_sample_file(capsys):
     output_file = PROJ_ROOT / "tests" / "fixtures" / "output_sample_file.txt"
 
     sys.argv = [__file__, str(input_file)]
-    main()
+    assert main() == 1
 
     expected = output_file.read_text().replace("PROJ_ROOT", str(PROJ_ROOT))
     out, err = capsys.readouterr()
